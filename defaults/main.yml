@@ -1,0 +1,21 @@
+---
+
+#----------------------------------------------------------------
+# List of Hosts
+#----------------------------------------------------------------
+additional_nodes_config_injector_hosts: "{{ groups['nodes'] }}"
+
+#----------------------------------------------------------------
+# Inject User config/settings
+#----------------------------------------------------------------
+additional_nodes_config_injector_user_config: true
+additional_nodes_config_injector_username: "{{ student_name }}"
+additional_nodes_config_injector_group: "{{ student_name }}"
+additional_nodes_config_injector_user_password: "{{ common_password }}"
+
+additional_nodes_config_injector_user_auth_type: ssh # or password
+
+#----------------------------------------------------------------
+# Inject un subscription tasks
+#----------------------------------------------------------------
+additional_nodes_config_injector_unsubscribe: true
