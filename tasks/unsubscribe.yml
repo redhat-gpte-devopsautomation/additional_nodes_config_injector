@@ -9,6 +9,7 @@
         r_unregister is failed and
         r_unregister.stderr | default('') != 'This system is currently not registered.'
       ignore_errors: true
+      delegate_to: "{{ _hostname_ }}"
 
     - name: Remove satellite Cert
       ansible.builtin.package:
@@ -29,6 +30,7 @@
         patterns:
         - '*.repo'
       register: r_find_repos
+      delegate_to: "{{ _hostname_ }}"
 
     - name: Remove current repository files
       ansible.builtin.file:
@@ -38,3 +40,4 @@
       loop_control:
         loop_var: file
         label: "{{ file.path }}"
+      delegate_to: "{{ _hostname_ }}"
