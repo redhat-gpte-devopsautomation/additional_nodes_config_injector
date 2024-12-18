@@ -11,7 +11,7 @@
 - name: Include host unsubscribe tasks
   when: additional_nodes_config_injector_unsubscribe | bool
   ansible.builtin.include_tasks:
-    file: users.yml
+    file: unsubscribe.yml
   loop: "{{ additional_nodes_config_injector_hosts }}"
   loop_control:
     loop_var: _hostname_
