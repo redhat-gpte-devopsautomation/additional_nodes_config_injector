@@ -10,7 +10,7 @@ additional_nodes_config_injector_hosts: "{{ groups['nodes'] }}"
 #----------------------------------------------------------------
 additional_nodes_config_injector_user_config: true
 additional_nodes_config_injector_username: "{{ student_name }}"
-additional_nodes_config_injector_group: "{{ student_name }}"
+additional_nodes_config_injector_group: "users"
 additional_nodes_config_injector_user_password: "{{ common_password }}"
 
 additional_nodes_config_injector_user_auth_type: ssh # or password
