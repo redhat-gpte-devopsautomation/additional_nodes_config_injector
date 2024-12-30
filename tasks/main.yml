@@ -15,3 +15,11 @@
   loop: "{{ additional_nodes_config_injector_hosts }}"
   loop_control:
     loop_var: _hostname_
+
+- name: Include host unsubscribe tasks
+  when: additional_nodes_config_injector_insights | bool
+  ansible.builtin.include_tasks:
+    file: insights.yml
+  loop: "{{ additional_nodes_config_injector_hosts }}"
+  loop_control:
+    loop_var: _hostname_

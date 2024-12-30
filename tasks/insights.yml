@@ -1,0 +1,34 @@
+---
+- name: Become block
+  become: true
+  block:
+    - name: Register node with Red Hat Insights
+      ansible.builtin.command: >-
+        rhc connect
+        -o {{ additional_nodes_config_injector_insights_org }}
+        -a {{ additional_nodes_config_injector_insights_activation_key }}
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Install Yara client
+      ansible.builtin.dnf:
+        name: yara
+        state: installed
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Run insights-client to generate config files
+      ansible.builtin.command: insights-client --collector malware-detection
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Configure insight malware detection - 1
+      ansible.builtin.lineinfile:
+        line: "test_scan: false"
+        regexp: "^test_scan: true"
+        path: /etc/insights-client/malware-detection-config.yml
+      delegate_to: "{{ _hostname_ }}"
+
+    - name: Configure insight malware detection - 2
+      ansible.builtin.lineinfile:
+        line: "filesystem_scan_only: [/home]"
+        regexp: "^filesystem_scan_only:"
+        path: /etc/insights-client/malware-detection-config.yml
+      delegate_to: "{{ _hostname_ }}"

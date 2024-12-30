@@ -19,3 +19,10 @@ additional_nodes_config_injector_user_auth_type: ssh # or password
 # Inject un subscription tasks
 #----------------------------------------------------------------
 additional_nodes_config_injector_unsubscribe: true
+
+#----------------------------------------------------------------
+# Inject Red Hat Insights registration tasks
+#----------------------------------------------------------------
+additional_nodes_config_injector_insights: true
+additional_nodes_config_injector_insights_org: <CHANGEME>
+additional_nodes_config_injector_insights_activation_key: <CHANGEME>
